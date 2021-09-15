@@ -1,16 +1,54 @@
-### Hi there 👋
+```go
+package main
 
-<!--
-**slnnk/slnnk** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+import (
+  "fmt"
+  "html"
+  "strconv"
+)
 
-Here are some ideas to get you started:
+var helloMsg string = html.UnescapeString("Hi there! &#" + strconv.Itoa(128406) + ";")
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+func main() {
+  slnnk := Engineer{
+    Name:     "Anton",
+    Age:      30,
+    Location: "Russia, Rostov-on-Don",
+    Company:  "DDoS-Guard",
+    Position: "Backend Developer / Lead DevOps Engineer",
+    TechStack: TechStack{
+      Code:       []string{"Go", "Python", "Perl"},
+      DBs:        []string{"Clickhouse", "Cassandra", "PostgreSQL", "MySQL", "MongoDB"},
+      MQ:         []string{"NATS", "RabbitMQ", "ZMQ"},
+      Monitoring: []string{"Prometheus", "Loki", "Grafana", "Promtail", "Graylog", "Zabbix", "Sentry"},
+      Containers: []string{"Docker", "Docker Compose", "Nomad"},
+      CI:         []string{"Gitalb CI", "Jenkins"},
+      Misc:       []string{"ETCD", "Redis", "Ansible", "Consul", "Nexus", "Nginx", "Traefik"},
+    },
+  }
+
+  fmt.Println(slnnk.Hi())
+}
+
+type Engineer struct {
+  Age       uint8
+  Name      string
+  Location  string
+  Company   string
+  Position  string
+  TechStack TechStack
+}
+
+type TechStack struct {
+  Code       []string
+  DBs        []string
+  Monitoring []string
+  MQ         []string
+  Containers []string
+  Misc       []string
+}
+
+func (e *Engineer) Hi() string {
+  return helloMsg
+}
+```
